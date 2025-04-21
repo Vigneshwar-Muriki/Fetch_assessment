@@ -1,28 +1,59 @@
-# Fetch_assessment part 3
-Stakeholder Message (Email/Slack)
-Subject: Summary of Data Quality Review and Key Insights from Fetch Analysis
+# Fetch Data Analyst Take-Home Project
 
-Hi team,
+## 📌 Overview
 
-I’ve completed an initial analysis of our transaction, user, and product datasets. Here’s a summary of my findings:
+This repository contains my completed take-home assignment for the Data Analyst role at Fetch. The project includes data exploration, SQL analysis, and stakeholder communication using three unstructured datasets: users, transactions, and products.
 
-Key Data Quality Issues:
+---
 
-The final_sale field contained blank strings and had to be cleaned before analysis could proceed. We converted these to NULLs for accurate aggregation.
+## 🧭 Structure
 
-Several product entries were missing key attributes like brand and category_4. In fact, over 70% of rows lacked a value in category_4, limiting deeper category-level analysis.
+- `notebooks/` – Jupyter notebook with full analysis (cleaning, visualizations, insights)
+- `sql/` – SQL queries used to answer Part 2 questions
+- `README.md` – Project summary (this file)
 
-Barcodes in the transaction data were originally stored in scientific notation (e.g., 7.83E+11) due to Excel formatting. We converted these to numeric format for consistent joins with product metadata.
+---
 
-Interesting Trend Identified: Among users aged 21 and over, TOSTITOS emerged as the top-selling brand in the Dips & Salsa category, outperforming other brands in total receipt count and sales volume. This could indicate strong loyalty or market positioning in this demographic.
+## ✅ Part 1: Data Exploration
 
-Outstanding Questions & Request for Action:
+Using Python (Pandas, Seaborn) and SQL, I explored and cleaned all datasets. Major issues found:
 
-We currently only have transaction data for 2024, which limits our ability to assess Fetch's year-over-year growth. Could we get access to 2023 data to enable a full YoY performance analysis?
+- `FINAL_QUANTITY` included the word `"zero"` as a string → replaced and cast to numeric
+- `FINAL_SALE` had blank strings → converted to nulls
+- `BARCODE` was in scientific notation → converted to full string format
+- `CATEGORY_4`, `MANUFACTURER`, `BRAND` had significant missing values in products
+- `USER_ID`s in transactions did not always match user records → filtered out
+- Gender field contained inconsistent formatting → normalized
 
-Several products have no brand or category associated — are there upstream data quality rules we can enforce to reduce missing metadata?
 
-Let me know if you’d like a walkthrough of the insights dashboard or if there's a specific hypothesis you'd like me to explore next.
+## 📊 Part 2: SQL Insights
 
-Best,
-Vigneshwar Muriki
+### ✅ Closed-Ended Questions
+
+1. **Top 5 Brands by Receipts (Users 21+)**  
+2. **Top 5 Brands by Sales (Users with Accounts > 6 months)**  
+3. **% of Sales in Health & Wellness by Generation**
+
+### ✅ Open-Ended Questions (with Assumptions)
+
+- **Leading Brand in Dips & Salsa**  
+- **Monthly Sales Trend (Substitute for YoY due to single year data)**  
+- **Power Users** (defined based on transaction frequency and spend)
+
+
+## 📬 Part 3: Stakeholder Communication
+
+As part of this exercise, I wrote a clear and concise summary for a product/business stakeholder. It includes:
+
+- Key data quality issues
+- One actionable insight (e.g., TOSTITOS is top in Dips & Salsa)
+- Request for clarification (e.g., usage of `SCAN_DATE` vs `PURCHASE_DATE`, unmatched users)
+
+🗒️ You can find this summary inside the final section of the notebook:
+
+
+## 🛠 How to Run
+
+### Install requirements:
+```bash
+pip install pandas matplotlib seaborn jupyter
