@@ -8,8 +8,8 @@ This repository contains my completed take-home assignment for the Data Analyst 
 
 ## 🧭 Structure
 
-- `notebooks/` – Jupyter notebook with full analysis (cleaning, visualizations, insights)
-- `sql/` – SQL queries used to answer Part 2 questions
+- Jupyter notebook with full analysis (cleaning, visualizations, insights)
+- SQL queries used to answer Part 2 questions
 - `README.md` – Project summary (this file)
 
 ---
